@@ -26,6 +26,10 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.get("/", (_req,res)=>{
+	res.send("Hello World!");
+});
+
 app.use("/api/generate-pdf-report", routeGeneratePDFReport);
 
 // Catch 404 and forward to error handler
