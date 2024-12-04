@@ -85,7 +85,8 @@ router.post("/", async function (req, res) {
         	timezone = 'utc';
         } else {
         	console.log(req.body.location);
-        	const res = await geocoder.geocode(req.body.location);
+        	// const res = await geocoder.geocode(req.body.location);
+            const res = JSON.parse(req.body.location);
         	console.log(res);
         
         	// Perform timezone lookup
