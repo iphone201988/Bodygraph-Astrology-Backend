@@ -90,8 +90,9 @@ router.post("/", async function (req, res) {
         	console.log(res);
         
         	// Perform timezone lookup
-        	timezone = find(res.latitude, res.longitude)[0]; // e.g. 'America/Chicago'
-        	console.log('Time zone found: ', timezone);
+        	const outputData = find(res.latitude, res.longitude); // e.g. 'America/Chicago';
+            console.log("timeZone outputData",outputData);
+            timezone = outputData[0];
         }
         // Hard coded to UTC
         // timezone = 'utc';
