@@ -81,19 +81,20 @@ router.post("/", async function (req, res) {
         });
         // Set the correct date by combining birthdate and birthtime
         var timezone;
-        // if (req.body.location == "") {
-        // 	timezone = 'utc';
-        // } else {
-        // 	console.log(req.body.location);
-        // 	const res = await geocoder.geocode(req.body.location);
-        // 	console.log(res);
-        //
-        // 	// Perform timezone lookup
-        // 	timezone = find(res.latitude, res.longitude)[0]; // e.g. 'America/Chicago'
-        // 	console.log('Time zone found: ', timezone);
-        // }
+        if (req.body.location == "") {
+        	timezone = 'utc';
+        } else {
+        	console.log(req.body.location);
+        	const res = await geocoder.geocode(req.body.location);
+        	console.log(res);
+        
+        	// Perform timezone lookup
+        	timezone = find(res.latitude, res.longitude)[0]; // e.g. 'America/Chicago'
+        	console.log('Time zone found: ', timezone);
+        }
         // Hard coded to UTC
-        timezone = 'utc';
+        // timezone = 'utc';
+        console.log("Time zone found:app.js ", timezone);
         var date = new Date(req.body.birthdate);
         var dateTimeLocal = DateTime.local(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), parseInt(req.body.birthtime.split(':')[0]), parseInt(req.body.birthtime.split(':')[1]), { zone: timezone });
         date = new Date(dateTimeLocal.ts);

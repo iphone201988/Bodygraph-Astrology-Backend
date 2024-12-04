@@ -64,6 +64,7 @@ router.post("/", async function (req: express.Request, res: express.Response) {
 			timezone = find(res.latitude, res.longitude)[0]; // e.g. 'America/Chicago'
 			console.log('Time zone found: ', timezone);
 		}
+		console.log("Time zone", timezone);
 		var date = new Date(req.body.birthdate);
 		var dateTimeLocal = DateTime.local(
 			date.getUTCFullYear(),
