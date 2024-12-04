@@ -44,38 +44,63 @@ const router = express.Router();
 router.post("/", async function (req: express.Request, res: express.Response) {
 	try {
 		let startTime: number = new Date().getTime();
-		var apiKey: string | undefined = process.env.GOOGLE_CLOUD_API_KEY;
-		console.log('Google API key', apiKey);
-		const geocoder = NodeGeocoder({
-			provider: 'google',
-			apiKey: apiKey
-		});
+		// var apiKey: string | undefined = process.env.GOOGLE_CLOUD_API_KEY;
+		// console.log('Google API key', apiKey);
+		// const geocoder = NodeGeocoder({
+		// 	provider: 'google',
+		// 	apiKey: apiKey
+		// });
 
 		// Set the correct date by combining birthdate and birthtime
+		// var timezone: string;
+		// if (req.body.location == "") {
+		// 	timezone = 'utc';
+		// } else {
+		// 	console.log(req.body.location);
+		// 	const res = await geocoder.geocode(req.body.location);
+		// 	console.log(res);
+
+		// 	// Perform timezone lookup
+		// 	timezone = find(res.latitude, res.longitude)[0]; // e.g. 'America/Chicago'
+		// 	console.log('Time zone found: ', timezone);
+		// }
+		// var date = new Date(req.body.birthdate);
+		// var dateTimeLocal = DateTime.local(
+		// 	date.getUTCFullYear(),
+		// 	date.getUTCMonth() + 1,
+		// 	date.getUTCDate(),
+		// 	parseInt(req.body.birthtime.split(':')[0]),
+		// 	parseInt(req.body.birthtime.split(':')[1]),
+		// 	{ zone: timezone });
+
+		// console.log('dateTimeLocal', dateTimeLocal);
+		// date = new Date(dateTimeLocal.ts);
+		// var bg: Bodygraph = bodygraph.createBodygraph(req.body.name, date, "Menomonee Falls, Wisconsin");
+
 		var timezone: string;
-		if (req.body.location == "") {
-			timezone = 'utc';
-		} else {
-			console.log(req.body.location);
-			const res = await geocoder.geocode(req.body.location);
-			console.log(res);
+        if (req.body.location == "") {
+            timezone = 'utc';
+        } else {
+            console.log(req.body.location);
+            // const res = await geocoder.geocode(req.body.location);
+            const res = JSON.parse(req.body.location);
+            console.log("location",res);
+            // Perform timezone lookup
+            timezone = find(res.latitude, res.longitude)[0]; // e.g. 'America/Chicago'
+            console.log('Time zone found: ', timezone);
+        }
+        var date = new Date(req.body.birthdate);
+        var dateTimeLocal = DateTime.local(
+            date.getUTCFullYear(),
+            date.getUTCMonth() + 1,
+            date.getUTCDate(),
+            parseInt(req.body.birthtime.split(':')[0]),
+            parseInt(req.body.birthtime.split(':')[1]),
+            { zone: timezone });
 
-			// Perform timezone lookup
-			timezone = find(res.latitude, res.longitude)[0]; // e.g. 'America/Chicago'
-			console.log('Time zone found: ', timezone);
-		}
-		var date = new Date(req.body.birthdate);
-		var dateTimeLocal = DateTime.local(
-			date.getUTCFullYear(),
-			date.getUTCMonth() + 1,
-			date.getUTCDate(),
-			parseInt(req.body.birthtime.split(':')[0]),
-			parseInt(req.body.birthtime.split(':')[1]),
-			{ zone: timezone });
-
-		console.log('dateTimeLocal', dateTimeLocal);
-		date = new Date(dateTimeLocal.ts);
-		var bg: Bodygraph = bodygraph.createBodygraph(req.body.name, date, "Menomonee Falls, Wisconsin");
+        console.log('dateTimeLocal', dateTimeLocal);
+        date = new Date(dateTimeLocal.ts);
+        var bg: Bodygraph = bodygraph.createBodygraph(req.body.name, date, "Menomonee Falls, Wisconsin");
 
 		// Print the bodygraph to the console
 		console.log(bg);
