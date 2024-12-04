@@ -1204,7 +1204,7 @@ router.post("/", async function (req, res) {
         ];
         // Add detailTable to the response
         bg.definition = JSON.stringify(detailTable);
-        res.status(200).json(bg,timezone);
+        res.status(200).json(bg);
     }
     catch (ex) {
         util.respondWithError500(ex, res);

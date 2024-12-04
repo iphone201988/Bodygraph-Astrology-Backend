@@ -1135,7 +1135,7 @@ router.post("/", async function (req, res) {
         // pdfDoc.pipe(fs.createWriteStream('document.pdf'));
         // pdfDoc.end();
         bg.totalProcessingTime = new Date().getTime() - startTime;
-        res.status(200).json(bg,timezone);
+        res.status(200).json(bg);
     }
     catch (ex) {
         util.respondWithError500(ex, res);
