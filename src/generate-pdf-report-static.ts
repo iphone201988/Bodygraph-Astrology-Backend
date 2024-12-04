@@ -44,20 +44,22 @@ const router = express.Router();
 router.post("/", async function (req: express.Request, res: express.Response) {
 	try {
 		let startTime: number = new Date().getTime();
-		var apiKey: string | undefined = process.env.GOOGLE_CLOUD_API_KEY;
-		console.log('Google API key', apiKey);
-		const geocoder = NodeGeocoder({
-			provider: 'google',
-			apiKey: apiKey
-		});
+		// var apiKey: string | undefined = process.env.GOOGLE_CLOUD_API_KEY;
+		// console.log('Google API key', apiKey);
+		// const geocoder = NodeGeocoder({
+		// 	provider: 'google',
+		// 	apiKey: apiKey
+		// });
 
 		// Set the correct date by combining birthdate and birthtime
 		var timezone: string;
 		if (req.body.location == "") {
 			timezone = 'utc';
 		} else {
-			console.log(req.body.location);
-			const res = await geocoder.geocode(req.body.location);
+			// console.log(req.body.location);
+			// const res = await geocoder.geocode(req.body.location);
+			// const res = await geocoder.geocode(req.body.location);
+            const res = JSON.parse(req.body.location);
 			console.log(res);
 
 			// Perform timezone lookup

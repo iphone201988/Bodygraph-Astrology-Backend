@@ -74,11 +74,11 @@ const router = express.Router();
 router.post("/", async function (req, res) {
     try {
         let startTime = new Date().getTime(); // Profiling
-        var apiKey = process.env.GOOGLE_CLOUD_API_KEY;
-        const geocoder = NodeGeocoder({
-            provider: 'google',
-            apiKey: apiKey
-        });
+        // var apiKey = process.env.GOOGLE_CLOUD_API_KEY;
+        // const geocoder = NodeGeocoder({
+        //     provider: 'google',
+        //     apiKey: apiKey
+        // });
         // Set the correct date by combining birthdate and birthtime
         var timezone;
         if (req.body.location == "") {
