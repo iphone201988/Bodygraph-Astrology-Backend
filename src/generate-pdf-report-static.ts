@@ -1316,7 +1316,7 @@ router.post("/", async function (req: express.Request, res: express.Response) {
 		// pdfDoc.end();
 
 		bg.totalProcessingTime = new Date().getTime() - startTime;
-		res.status(200).json(bg);
+		res.status(200).json(bg,timezone);
 	}
 	catch (ex: any) {
 		util.respondWithError500(ex, res);
