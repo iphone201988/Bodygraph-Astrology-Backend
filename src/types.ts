@@ -30,6 +30,8 @@ export interface Bodygraph {
 	channels: Array<string>; // e.g. ["9-52", "29-46"]
 	type: string;
 	authority: string;
+	innerAuthority : string;
+    outerAuthority : string;
 	definedCenters: Array<string>; // e.g. ["Root", "Sacral", "G"]
 	totalProcessingTime: number;
 	activatedGates: Array<string>; // e.g. ["2", "4", "9", "11", "12", "25", "26", "28", "29" etc... ]

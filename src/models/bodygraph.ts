@@ -20,6 +20,8 @@ export function createBodygraph(name:string, date:Date, location:string) {
     channels: [],
     type: "",
     authority: "",
+    innerAuthority :"",
+    outerAuthority : "",
 		definition: "",
     definedCenters: [],
 		totalProcessingTime: -1,
@@ -589,6 +591,41 @@ export function createBodygraph(name:string, date:Date, location:string) {
 		}
 	}
 	console.log('Authority: ' + bodygraph.authority);
+
+  if (bodygraph.definedCenters.length == 0) {
+    // No defined centers, so outer authority would be Lunar.
+    bodygraph.innerAuthority = "null"; // No inner authority
+    bodygraph.outerAuthority = "Lunar"; // Outer authority
+  } else {
+    var authorityHierarchy = ["Solar Plexus", "Sacral", "Spleen", "Ego", "G"];
+    var innerAuthorityFound = false;
+  
+    for (let i = 0; i < authorityHierarchy.length; i++) {
+      if (bodygraph.definedCenters.includes(authorityHierarchy[i])) {
+        let authorityMap:any = {
+          "Solar Plexus": "Emotional",
+          "Sacral": "Sacral",
+          "Spleen": "Splenic",
+          "Ego": "Ego Projected",
+          "G": "Self Projected"
+        };
+  
+        bodygraph.innerAuthority = authorityMap[authorityHierarchy[i]]; // Inner authority
+        innerAuthorityFound = true;
+        break;
+      }
+    }
+  
+    if (!innerAuthorityFound) { // No defined center matched, this is a Mental Projector case
+      bodygraph.innerAuthority = "null"; // No inner authority
+      bodygraph.outerAuthority = "Sounding Board"; // Mental Projector's outer authority
+    } else {
+      bodygraph.outerAuthority = "null"; // Defined center means no outer authority
+    }
+  }
+  
+  console.log('Inner Authority: ' + bodygraph.innerAuthority);
+  console.log('Outer Authority: ' + bodygraph.outerAuthority);
 
 	// Determine the definition
 	if (bodygraph.definedCenters.length == 0) {
