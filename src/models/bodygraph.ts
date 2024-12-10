@@ -8,7 +8,7 @@ const path = require('path');
 const flag = swisseph.SEFLG_SPEED;
 
 console.log("Path by swisseph configuration",__dirname + '../../src/ephe');
-console.log("Path by swisseph",path.join(__dirname, "../../src/ephe"));
+console.log("Path by swisseph",path.join(__dirname, "../src/ephe"));
 
 swisseph.swe_set_ephe_path(__dirname + '../../src/ephe');
 
