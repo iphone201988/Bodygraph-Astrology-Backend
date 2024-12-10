@@ -6,7 +6,7 @@ const swisseph = require ('swisseph');
 
 const flag = swisseph.SEFLG_SPEED;
 
-swisseph.swe_set_ephe_path(__dirname + '../ephe');
+swisseph.swe_set_ephe_path(__dirname + '../../src/ephe');
 
 // The main function: creating a new bodygraph
 export function createBodygraph(name:string, date:Date, location:string) {
