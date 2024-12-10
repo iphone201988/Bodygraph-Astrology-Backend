@@ -28,7 +28,7 @@ const crypto = __importStar(require("crypto"));
 // Swiss Ephemeris configuration
 const swisseph = require('swisseph');
 const flag = swisseph.SEFLG_SPEED;
-swisseph.swe_set_ephe_path(__dirname + './ephemeris');
+swisseph.swe_set_ephe_path(__dirname + '../../src/ephe');
 // The main function: creating a new bodygraph
 function createBodygraph(name, date, location) {
     // Create a new Bodygraph that we will fill with values from querying the Swiss Ephemeris.
